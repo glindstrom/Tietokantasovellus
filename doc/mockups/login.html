@@ -2,15 +2,20 @@
 <html>
     <head>
         <title>Football database</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-        <form method="POST" action="welcome.html">
-            Username: <input type="text" name="username" size="15" /><br />
-            Password:  <input type="password" name="password" size="15" /><br />
-            <div align="center">
-                <p><input type="submit" value="Login" /></p>
-            </div>
+        <form id="login" method="POST" action="welcome.html">
+            <h1>Log In</h1>
+            <fieldset id="inputs">
+                <input id="username" type="text" placeholder="Username" autofocus required>   
+                <input id="password" type="password" placeholder="Password" required>
+            </fieldset>
+            <fieldset id="actions">
+                <input type="submit" id="submit" value="Log in">
+                <a href="">Register</a>
+            </fieldset>
         </form>
     </body>
 
