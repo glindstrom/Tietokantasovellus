@@ -16,7 +16,7 @@ CREATE TABLE season(
 
 CREATE TABLE team(
 	id serial PRIMARY KEY,
-	name varchar NOT NULL,
+	name varchar NOT NULL
 );
 
 CREATE TABLE membership(
