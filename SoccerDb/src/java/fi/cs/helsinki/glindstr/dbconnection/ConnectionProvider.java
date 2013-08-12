@@ -12,7 +12,24 @@ import java.sql.SQLException;
  */
 public class ConnectionProvider 
 {
-    /**
+//    /**
+//     * database driver
+//     */
+//    private static final String dbDriver = "org.apache.derby.jdbc.ClientDriver";
+//    /**
+//     * location of the database
+//     */
+//    private static final String dbServer = "jdbc:derby://localhost:1527/soccerdb";
+//    /**
+//     * username for the database
+//     */
+//    private static final String dbUser = "s";
+//    /**
+//     * password for the database
+//     */
+//    private static final String dbPassword = "s";
+    
+      /**
      * database driver
      */
     private static final String dbDriver = "org.postgresql.Driver";
