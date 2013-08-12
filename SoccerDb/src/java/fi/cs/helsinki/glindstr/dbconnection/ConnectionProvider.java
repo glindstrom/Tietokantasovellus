@@ -41,14 +41,14 @@ public class ConnectionProvider
             Class.forName(dbDriver).newInstance();
             conn = DriverManager.getConnection(dbServer, dbUser, dbPassword);
         }
-        catch(ClassNotFoundException | InstantiationException | IllegalAccessException e)
-        {
-            System.out.println("Loading the driver failed. " + e.getMessage());
-        }
         catch (SQLException e)
         {
             System.out.println(e);
         }
+        catch(Exception e)
+        {
+            System.out.println("Loading the driver failed. " + e.getMessage());
+        }        
         
         return conn;
     }
