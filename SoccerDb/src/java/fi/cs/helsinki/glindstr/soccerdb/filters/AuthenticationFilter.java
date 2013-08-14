@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * This filter checks that the user is logged in before accessing a page.
+ * 
+ */
 public class AuthenticationFilter implements Filter
 {
 
