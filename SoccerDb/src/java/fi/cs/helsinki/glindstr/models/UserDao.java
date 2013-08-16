@@ -10,8 +10,10 @@ import fi.cs.helsinki.glindstr.dbconnection.ConnectionProvider;
  */
 public class UserDao
 {
+
     /**
      * Adds a new user to the database.
+     *
      * @param user the user to be added
      */
     public void addUser(User user)
@@ -24,16 +26,27 @@ public class UserDao
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPass());
             ps.executeUpdate();
-            conn.close();
-        } 
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             System.out.println(e);
-        }        
+        } finally
+        {
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } 
+                catch (SQLException ignore)
+                {
+                }
+            }
+        }
     }
-    
+
     /**
      * Checks if the user has registered.
+     *
      * @param user the user to be validated
      * @return true if the username and password matches the database.
      */
@@ -49,11 +62,20 @@ public class UserDao
             ps.setString(2, user.getPass());
             ResultSet rs = ps.executeQuery();
             status = rs.next();
-            conn.close();
-        } 
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             System.out.println(e);
+        } finally
+        {
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException ignore)
+                {
+                }
+            }
         }
         return status;
     }

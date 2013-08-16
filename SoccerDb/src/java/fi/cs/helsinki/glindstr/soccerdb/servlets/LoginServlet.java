@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * This Servlet handles the login function.
+ * This servlet handles the login function.
  *
  */
 public class LoginServlet extends HttpServlet
 {
- /**
+
+    /**
      * location of front page
      */
     private static final String WELCOME = "/welcome.jsp";
@@ -25,69 +26,17 @@ public class LoginServlet extends HttpServlet
      */
     private static final String LOGIN = "/login.jsp";
     /**
-     *  data access object for users table 
+     * data access object for users table
      */
     private UserDao dao;
-    
+
     /**
      * Class constructor.
      */
     public LoginServlet()
     {
         super();
-        dao = new UserDao();        
-    }    
-
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        String redirect = LOGIN;
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        if (username != null && password != null)
-        {
-            User user = new User();
-            user.setUsername(username);
-            user.setPass(password);
- 
-            if (dao.validateUser(user))
-            {
-                HttpSession session = request.getSession();
-                session.setAttribute("logged", "logged");
-                redirect = WELCOME;
-            }
-            
-        }
-
-        RequestDispatcher rd = request.getRequestDispatcher(redirect);
-        rd.forward(request, response);
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP
-     * <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        processRequest(request, response);
+        dao = new UserDao();
     }
 
     /**
@@ -103,17 +52,30 @@ public class LoginServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
-    }
+        String redirect = LOGIN;
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        if (username != null && password != null)
+        {
+            User user = new User();
+            user.setUsername(username);
+            user.setPass(password);
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo()
-    {
-        return "Short description";
-    }// </editor-fold>
+            if (dao.validateUser(user))
+            {
+                HttpSession session = request.getSession();
+                session.setAttribute("logged", "logged");
+                redirect = WELCOME;
+            } 
+            else
+            {
+                request.setAttribute("message", "Unknown username and/or password, try again");
+                redirect = LOGIN;
+            }
+
+        }
+
+        RequestDispatcher rd = request.getRequestDispatcher(redirect);
+        rd.forward(request, response);
+    }
 }

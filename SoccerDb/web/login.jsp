@@ -25,6 +25,7 @@
                 <input type="submit" id="submit" value="Log in">
                 <a href="/SoccerDb/register.jsp">Register</a>
             </fieldset>
+            ${message}
         </form>
     </body>
 </html>
