@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * This servlet handles the login function.
+ * This servlet handles the login functionality.
  *
  */
 public class LoginServlet extends HttpServlet

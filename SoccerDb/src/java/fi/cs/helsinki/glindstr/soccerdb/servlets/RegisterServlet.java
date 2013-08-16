@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * This servlet handles the register functionality.
+ * 
+ */
 public class RegisterServlet extends HttpServlet
 {
     /**

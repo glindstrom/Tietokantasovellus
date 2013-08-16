@@ -26,7 +26,8 @@ public class UserDao
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPass());
             ps.executeUpdate();
-        } catch (SQLException e)
+        } 
+        catch (SQLException e)
         {
             System.out.println(e);
         } finally
@@ -79,4 +80,5 @@ public class UserDao
         }
         return status;
     }
+    
 }

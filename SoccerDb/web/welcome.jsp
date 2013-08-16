@@ -12,6 +12,7 @@
         <title>Football Database</title>
     </head>
     <body>
-        <a href="MenuServlet?action=league">Edit/add leagues</a>
+        <h1>MENU</h1>
+        <a href="LeagueServlet?action=league">Edit/add leagues</a>
     </body>
 </html>

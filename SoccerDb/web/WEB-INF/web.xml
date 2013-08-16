@@ -17,8 +17,8 @@
         <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MenuServlet</servlet-name>
-        <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.MenuServlet</servlet-class>
+        <servlet-name>LeagueServlet</servlet-name>
+        <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.LeagueServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -29,8 +29,8 @@
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MenuServlet</servlet-name>
-        <url-pattern>/MenuServlet</url-pattern>
+        <servlet-name>LeagueServlet</servlet-name>
+        <url-pattern>/LeagueServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

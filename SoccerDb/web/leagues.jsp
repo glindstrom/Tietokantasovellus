@@ -19,10 +19,20 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th colspan=2>Action</th>
+                    <th></th>
                 </tr>
             </thead>
+            <tbody>
+                <c:forEach items="${leagues}" var = "league">
+                    <tr>
+                        <td><c:out value="${league.id}" /></td>
+                        <td><c:out value="${league.name}" /></td>
+                        <td><a href="LeagueServlet?action=delete&id=<c:out value="${league.id}" />">Delete</a></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
-        <p><a href="">Add league</a></p>
+        <p><a href="LeagueServlet?action=addleague">Add league</a></p>
+        <p><a href="LeagueServlet?action=menu">Menu</a></p>
     </body>
 </html>
