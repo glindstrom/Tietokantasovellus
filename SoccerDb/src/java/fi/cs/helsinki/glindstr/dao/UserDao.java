@@ -1,10 +1,11 @@
-package fi.cs.helsinki.glindstr.models;
+package fi.cs.helsinki.glindstr.dao;
 
 import java.sql.*;
 import fi.cs.helsinki.glindstr.dbconnection.ConnectionProvider;
+import fi.cs.helsinki.glindstr.models.User;
 
 /**
- * This class handles the database access for the user registration function.
+ * This class provides database access for the user registration function.
  *
  * @author Gabriel
  */

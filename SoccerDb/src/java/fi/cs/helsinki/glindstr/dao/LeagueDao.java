@@ -1,6 +1,7 @@
-package fi.cs.helsinki.glindstr.models;
+package fi.cs.helsinki.glindstr.dao;
 
 import fi.cs.helsinki.glindstr.dbconnection.ConnectionProvider;
+import fi.cs.helsinki.glindstr.models.League;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class provides database access for the league table.
+ * 
+ */
 public class LeagueDao
 {
     /**

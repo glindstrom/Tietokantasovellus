@@ -1,8 +1,8 @@
 
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
-import fi.cs.helsinki.glindstr.models.League;
-import fi.cs.helsinki.glindstr.dao.LeagueDao;
+import fi.cs.helsinki.glindstr.dao.TeamDao;
+import fi.cs.helsinki.glindstr.models.Team;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This servlet handles adding and editing leagues.
+ * This servlet handles adding and deleting teams.
  * @author Gabriel
  */
-public class LeagueServlet extends HttpServlet
+public class TeamServlet extends HttpServlet
 {
     /**
      * location of the league table
      */
-    private final String LEAGUE_LIST = "/leagues.jsp";
+    private final String TEAM_LIST = "/teams.jsp";
     
     /**
      * location of the menu page
@@ -29,20 +29,20 @@ public class LeagueServlet extends HttpServlet
     /**
      * location of the add league page 
      */
-    private final String ADD_LEAGUE = "/addleague.jsp";
+    private final String ADD_TEAM = "/addteam.jsp";
     
     /**
      * data access object for league table
      */    
-    private LeagueDao dao;
+    private TeamDao dao;
     
     /**
      * Class constructor.
      */
-    public LeagueServlet()
+    public TeamServlet()
     {
         super();
-        this.dao = new LeagueDao();
+        this.dao = new TeamDao();
     }
   
     
@@ -64,18 +64,18 @@ public class LeagueServlet extends HttpServlet
         String action = request.getParameter("action");
         if (action.equalsIgnoreCase("listLeagues"))
         {            
-            redirect = LEAGUE_LIST;
-            request.setAttribute("leagues", dao.getAllLeagues());
+            redirect = TEAM_LIST;
+            request.setAttribute("teams", dao.getAllTeams());
         }
         else if (action.equalsIgnoreCase("addleague"))
         {
-            redirect = ADD_LEAGUE;            
+            redirect = ADD_TEAM;            
         }
         else if (action.equalsIgnoreCase("delete"))
         {
-            redirect = LEAGUE_LIST;
-            dao.deleteLeague(request.getParameter("id"));
-            request.setAttribute("leagues", dao.getAllLeagues());
+            redirect = TEAM_LIST;
+            dao.deleteTeam(request.getParameter("id"));
+            request.setAttribute("teams", dao.getAllTeams());
         }
         else
         {
@@ -99,11 +99,11 @@ public class LeagueServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        League league = new League();
-        league.setName(request.getParameter("name"));
-        dao.addLeague(league);
-        RequestDispatcher rd = request.getRequestDispatcher(LEAGUE_LIST);
-        request.setAttribute("leagues", dao.getAllLeagues());
+        Team team = new Team();
+        team.setName(request.getParameter("name"));
+        dao.addTeam(team);
+        RequestDispatcher rd = request.getRequestDispatcher(TEAM_LIST);
+        request.setAttribute("teams", dao.getAllTeams());
         rd.forward(request, response);
     }
 

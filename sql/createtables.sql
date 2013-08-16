@@ -21,7 +21,6 @@ CREATE TABLE team(
 
 CREATE TABLE membership(
 	id serial PRIMARY KEY,
-	name varchar NOT NULL,
 	league_id integer references league(id) ON DELETE CASCADE,
 	season_id integer references season(id) ON DELETE CASCADE,
 	team_id integer references team(id) ON DELETE CASCADE

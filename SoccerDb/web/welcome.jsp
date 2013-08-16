@@ -13,6 +13,10 @@
     </head>
     <body>
         <h1>MENU</h1>
-        <a href="LeagueServlet?action=league">Edit/add leagues</a>
+        <a href="LeagueServlet?action=listLeagues">Manage leagues</a>
+        <a href="TeamServlet?action=listTeams">Manage teams</a>
+        <a href="SeasonServlet?action=listSeasons">Manage seasons</a>
+        <a href="MembershipServlet?action=listMemberships">Manage memberships</a>
+        <a href="GameServlet?action=">Manage games</a>
     </body>
 </html>
