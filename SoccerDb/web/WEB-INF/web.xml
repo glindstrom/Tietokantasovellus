@@ -13,12 +13,24 @@
         <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>TeamServlet</servlet-name>
+        <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.TeamServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LeagueServlet</servlet-name>
         <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.LeagueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeasonServlet</servlet-name>
+        <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.SeasonServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MembershipServlet</servlet-name>
+        <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.MembershipServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>LeagueServlet</servlet-name>
         <url-pattern>/LeagueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamServlet</servlet-name>
+        <url-pattern>/TeamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeasonServlet</servlet-name>
+        <url-pattern>/SeasonServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MembershipServlet</servlet-name>
+        <url-pattern>/MembershipServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

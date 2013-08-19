@@ -1,5 +1,5 @@
 <%-- 
-    Document   : addleague
+    Document   : addteam
     Created on : Aug 16, 2013, 1:51:18 PM
     Author     : Gabriel
 --%>
@@ -9,15 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add League</title>
+        <title>Add Team</title>
     </head>
     <body>
-        <form method="POST" action='LeagueServlet' name="add"><input
+        <form method="POST" action='TeamServlet' name="add"><input
                 type="hidden" name="action" value="add" />
-            <p><b>Add New League</b></p>
+            <p><b>Add New Team</b></p>
             <table>
                 <tr>
-                    <td>League name</td>
+                    <td>Team name</td>
                     <td><input type="text" name="name" autofocus required /></td>
                 </tr>
                 <tr>

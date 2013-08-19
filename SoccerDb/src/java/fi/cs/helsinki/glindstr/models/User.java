@@ -3,7 +3,7 @@
 package fi.cs.helsinki.glindstr.models;
 
 /**
- * This class represents records of the users table.
+ * This class represents a record of the users table.
  * 
  */
 public class User 

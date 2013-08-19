@@ -1,6 +1,6 @@
 <%-- 
-    Document   : teams
-    Created on : Aug 15, 2013, 7:43:31 PM
+    Document   : seasons
+    Created on : Aug 19, 2013, 11:38:28 AM
     Author     : Gabriel
 --%>
 
@@ -11,29 +11,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Teams</title>
+        <title>Seasons</title>
     </head>
     <body>
-        <h1>All Teams</h1>
+        <h1>All Seasons</h1>
         <table border=1>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Team</th>
+                    <th>Season</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${teams}" var = "team">
+                <c:forEach items="${seasons}" var = "season">
                     <tr>
-                        <td><c:out value="${team.id}" /></td>
-                        <td><c:out value="${team.name}" /></td>
-                        <td><a href="LeagueServlet?action=delete&id=<c:out value="${team.id}" />">Delete</a></td>
+                        <td><c:out value="${season.id}" /></td>
+                        <td><c:out value="${season.name}" /></td>
+                        <td><a href="SeasonServlet?action=delete&id=<c:out value="${season.id}" />">Delete</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <p><a href="TeamServlet?action=addTeam">Add team</a></p>
-        <p><a href="TeamServlet?action=menu">Menu</a></p>
+        <p><a href="SeasonServlet?action=addseason">Add season</a></p>
+        <p><a href="SeasonServlet?action=menu">Menu</a></p>
     </body>
 </html>
+

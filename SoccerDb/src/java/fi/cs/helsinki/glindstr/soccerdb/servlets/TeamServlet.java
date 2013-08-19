@@ -2,6 +2,7 @@
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
 import fi.cs.helsinki.glindstr.dao.TeamDao;
+import fi.cs.helsinki.glindstr.dao.TeamDaoImpl;
 import fi.cs.helsinki.glindstr.models.Team;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This servlet handles adding and deleting teams.
+ * This servlet handles the management of teams.
  * @author Gabriel
  */
 public class TeamServlet extends HttpServlet
@@ -19,17 +20,17 @@ public class TeamServlet extends HttpServlet
     /**
      * location of the league table
      */
-    private final String TEAM_LIST = "/teams.jsp";
+    private static final String TEAM_LIST = "/teams.jsp";
     
     /**
      * location of the menu page
      */
-    private final String MENU = "/welcome.jsp";
+    private static final String MENU = "/welcome.jsp";
     
     /**
      * location of the add league page 
      */
-    private final String ADD_TEAM = "/addteam.jsp";
+    private static final String ADD_TEAM = "/addteam.jsp";
     
     /**
      * data access object for league table
@@ -42,7 +43,7 @@ public class TeamServlet extends HttpServlet
     public TeamServlet()
     {
         super();
-        this.dao = new TeamDao();
+        this.dao = new TeamDaoImpl();
     }
   
     
@@ -62,19 +63,19 @@ public class TeamServlet extends HttpServlet
     {
         String redirect;
         String action = request.getParameter("action");
-        if (action.equalsIgnoreCase("listLeagues"))
+        if (action.equalsIgnoreCase("listTeams"))
         {            
             redirect = TEAM_LIST;
             request.setAttribute("teams", dao.getAllTeams());
         }
-        else if (action.equalsIgnoreCase("addleague"))
+        else if (action.equalsIgnoreCase("addteam"))
         {
             redirect = ADD_TEAM;            
         }
         else if (action.equalsIgnoreCase("delete"))
         {
             redirect = TEAM_LIST;
-            dao.deleteTeam(request.getParameter("id"));
+            dao.delete(Integer.parseInt(request.getParameter("id")));
             request.setAttribute("teams", dao.getAllTeams());
         }
         else
@@ -101,7 +102,7 @@ public class TeamServlet extends HttpServlet
     {
         Team team = new Team();
         team.setName(request.getParameter("name"));
-        dao.addTeam(team);
+        dao.save(team);
         RequestDispatcher rd = request.getRequestDispatcher(TEAM_LIST);
         request.setAttribute("teams", dao.getAllTeams());
         rd.forward(request, response);

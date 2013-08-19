@@ -2,7 +2,7 @@
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
 import fi.cs.helsinki.glindstr.models.User;
-import fi.cs.helsinki.glindstr.dao.UserDao;
+import fi.cs.helsinki.glindstr.dao.UserDaoImpl;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet
     /**
      *  data access object for users table 
      */
-    private UserDao dao;
+    private UserDaoImpl dao;
     
     /**
      * Class constructor.
@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet
     public RegisterServlet()
     {
         super();
-        dao = new UserDao();        
+        dao = new UserDaoImpl();        
     }    
 
     /**

@@ -1,9 +1,9 @@
 
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
-import fi.cs.helsinki.glindstr.dao.LeagueDao;
-import fi.cs.helsinki.glindstr.models.League;
-import fi.cs.helsinki.glindstr.dao.LeagueDaoImpl;
+import fi.cs.helsinki.glindstr.dao.SeasonDao;
+import fi.cs.helsinki.glindstr.models.Season;
+import fi.cs.helsinki.glindstr.dao.SeasonDaoImpl;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This servlet handles the management of leagues.
+ * This servlet handles the management of seasons.
  * @author Gabriel
  */
-public class LeagueServlet extends HttpServlet
+public class SeasonServlet extends HttpServlet
 {
     /**
-     * location of the league table
+     * location of the season table
      */
-    private static final String LEAGUE_LIST = "/leagues.jsp";
+    private static final String SEASON_LIST = "/seasons.jsp";
     
     /**
      * location of the menu page
@@ -28,22 +28,22 @@ public class LeagueServlet extends HttpServlet
     private static final String MENU = "/welcome.jsp";
     
     /**
-     * location of the add league page 
+     * location of the add season page 
      */
-    private static final String ADD_LEAGUE = "/addleague.jsp";
+    private static final String ADD_SEASON = "/addseason.jsp";
     
     /**
-     * data access object for league table
+     * data access object for season table
      */    
-    private LeagueDao dao;
+    private SeasonDao dao;
     
     /**
      * Class constructor.
      */
-    public LeagueServlet()
+    public SeasonServlet()
     {
         super();
-        this.dao = new LeagueDaoImpl();
+        this.dao = new SeasonDaoImpl();
     }
   
     
@@ -63,20 +63,20 @@ public class LeagueServlet extends HttpServlet
     {
         String redirect;
         String action = request.getParameter("action");
-        if (action.equalsIgnoreCase("listLeagues"))
+        if (action.equalsIgnoreCase("listSeasons"))
         {            
-            redirect = LEAGUE_LIST;
-            request.setAttribute("leagues", dao.getAllLeagues());
+            redirect = SEASON_LIST;
+            request.setAttribute("seasons", dao.getAllSeasons());
         }
-        else if (action.equalsIgnoreCase("addleague"))
+        else if (action.equalsIgnoreCase("addseason"))
         {
-            redirect = ADD_LEAGUE;            
+            redirect = ADD_SEASON;            
         }
         else if (action.equalsIgnoreCase("delete"))
         {
-            redirect = LEAGUE_LIST;
+            redirect = SEASON_LIST;
             dao.delete(Integer.parseInt(request.getParameter("id")));
-            request.setAttribute("leagues", dao.getAllLeagues());
+            request.setAttribute("seasons", dao.getAllSeasons());
         }
         else
         {
@@ -100,11 +100,11 @@ public class LeagueServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        League league = new League();
-        league.setName(request.getParameter("name"));
-        dao.save(league);
-        RequestDispatcher rd = request.getRequestDispatcher(LEAGUE_LIST);
-        request.setAttribute("leagues", dao.getAllLeagues());
+        Season season = new Season();
+        season.setName(request.getParameter("name"));
+        dao.save(season);
+        RequestDispatcher rd = request.getRequestDispatcher(SEASON_LIST);
+        request.setAttribute("seasons", dao.getAllSeasons());
         rd.forward(request, response);
     }
 

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addleague
-    Created on : Aug 16, 2013, 1:51:18 PM
+    Document   : addseason
+    Created on : Aug 19, 2013, 12:25:00 PM
     Author     : Gabriel
 --%>
 
@@ -9,15 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add League</title>
+        <title>Add Season</title>
     </head>
     <body>
-        <form method="POST" action='LeagueServlet' name="add"><input
+        <form method="POST" action='SeasonServlet' name="add"><input
                 type="hidden" name="action" value="add" />
-            <p><b>Add New League</b></p>
+            <p><b>Add New Season</b></p>
             <table>
                 <tr>
-                    <td>League name</td>
+                    <td>Season name</td>
                     <td><input type="text" name="name" autofocus required /></td>
                 </tr>
                 <tr>

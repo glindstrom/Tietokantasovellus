@@ -4,15 +4,15 @@
  */
 package fi.cs.helsinki.glindstr.dao;
 
-import fi.cs.helsinki.glindstr.models.Team;
+import fi.cs.helsinki.glindstr.models.Membership;
 import java.util.List;
 
 /**
- * An interface for database operations on the team table.
- * The TeamDao interface provides a method for gaining a list of all teams.
+ * An interface for database operations on the membership table.
+ * The MemebershipDao interface provides a method for gaining a list of all memberships.
  * 
  */
-public interface TeamDao extends BaseDao<Team>
+public interface MembershipDao extends BaseDao<Membership>
 {
 
     /**
@@ -20,5 +20,5 @@ public interface TeamDao extends BaseDao<Team>
      *
      * @return a list of all leagues
      */
-    List<Team> getAllTeams();
+    List<Membership> getAllMemberships();
 }

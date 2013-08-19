@@ -9,7 +9,14 @@ package fi.cs.helsinki.glindstr.models;
  */
 public class League 
 {
+    /**
+     * the id number of the league
+     */
     private int id;
+    
+    /**
+     * the name of the league
+     */
     private String name;
      
     public void setId(int id)

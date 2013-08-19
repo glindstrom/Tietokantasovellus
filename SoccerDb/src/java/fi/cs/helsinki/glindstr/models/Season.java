@@ -9,7 +9,14 @@ package fi.cs.helsinki.glindstr.models;
  */
 public class Season 
 {
+    /**
+     * the id number of the season
+     */
     private int id;
+    
+    /**
+     * the name of the season
+     */
     private String name;
      
     public void setId(int id)

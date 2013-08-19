@@ -14,11 +14,12 @@
         <title>Leagues</title>
     </head>
     <body>
+        <h1>All Leagues</h1>
         <table border=1>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>League</th>
                     <th></th>
                 </tr>
             </thead>

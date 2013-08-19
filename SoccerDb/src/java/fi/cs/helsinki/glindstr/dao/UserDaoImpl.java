@@ -9,7 +9,7 @@ import fi.cs.helsinki.glindstr.models.User;
  *
  * @author Gabriel
  */
-public class UserDao
+public class UserDaoImpl
 {
 
     /**

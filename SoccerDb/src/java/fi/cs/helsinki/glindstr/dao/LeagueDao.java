@@ -1,120 +1,19 @@
+
 package fi.cs.helsinki.glindstr.dao;
 
-import fi.cs.helsinki.glindstr.dbconnection.ConnectionProvider;
 import fi.cs.helsinki.glindstr.models.League;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class provides database access for the league table.
+ * An interface for database operations on the league table.
+ * The LeagueDao interface provides a method for gaining a list of all leagues.
  * 
  */
-public class LeagueDao
+public interface LeagueDao extends BaseDao<League>
 {
     /**
-     * Adds a new league to the database.
-     * @param league the league to be added
+     * Returns a list containing all leagues in the database.
+     * @return a list with all leagues
      */
-    public void addLeague(League league)
-    {
-        Connection conn = ConnectionProvider.createConnection();
-        try
-        {
-            String sql = "INSERT INTO league (name) VALUES (?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, league.getName());
-            ps.executeUpdate();
-            conn.close();
-        } catch (SQLException e)
-        {
-            System.out.println(e);
-        } finally
-        {
-            if (conn != null)
-            {
-                try
-                {
-                    conn.close();
-                } catch (SQLException ignore)
-                {
-                }
-            }
-        }
-    }
-    
-    /**
-     * Returns a list containing all leagues in the database
-     * @return a list of all leagues
-     */
-    public List<League> getAllLeagues()
-    {
-        Connection conn = ConnectionProvider.createConnection();
-        List<League> leagues = new ArrayList();
-        try
-        {
-            String sql = "SELECT * FROM league";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next())
-            {
-                League league = new League();
-                league.setId(rs.getInt("id"));
-                league.setName(rs.getString("name"));
-                leagues.add(league);
-            }
-        } 
-        catch (SQLException e)
-        {
-            System.out.println(e);
-        } 
-        finally
-        {
-            if (conn != null)
-            {
-                try
-                {
-                  conn.close();
-                } 
-                catch (SQLException e)
-                {
-                    System.out.println(e);
-                }
-            }
-        }
-        return leagues;
-    }
-    
-    public void deleteLeague(String id)
-    {
-        Connection conn = ConnectionProvider.createConnection();
-        try
-        {
-            String sql = "DELETE FROM league WHERE id=?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
-            ps.executeUpdate();
-        } 
-        catch (SQLException e)
-        {
-            System.out.println(e);
-        } 
-        finally
-        {
-            if (conn != null)
-            {
-                try
-                {
-                  conn.close();
-                } 
-                catch (SQLException e)
-                {
-                    System.out.println(e);
-                }
-            }
-        } 
-    }
+    List<League> getAllLeagues();
 }
