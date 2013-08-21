@@ -1,6 +1,6 @@
 CREATE TABLE users(
 	id serial PRIMARY KEY,
-	username varchar UNIQUE,
+	username varchar UNIQUE NOT NULL,
 	password varchar NOT NULL
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE game(
     season_id int references season(id) ON DELETE CASCADE,
 	home_score integer,
 	away_score integer,
-	game_date date,
+	game_date date NOT NULL,
 	time_edited timestamp,
 	edited_by integer references users(id) ON DELETE RESTRICT
 );

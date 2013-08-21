@@ -18,5 +18,6 @@
         <p><a href="SeasonServlet?action=listSeasons">Manage seasons</a></p>
         <p><a href="MembershipServlet?action=listMemberships">Manage memberships</a></p>
         <p><a href="GameServlet?action=listGames">Manage games</a></p>
+        <p><a href="StandingsServlet">View standings</a></p>
     </body>
 </html>

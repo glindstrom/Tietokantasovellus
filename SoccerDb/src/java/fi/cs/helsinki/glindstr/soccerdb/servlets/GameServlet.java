@@ -7,8 +7,6 @@ import fi.cs.helsinki.glindstr.dao.GameDao;
 import fi.cs.helsinki.glindstr.dao.GameDaoImpl;
 import fi.cs.helsinki.glindstr.dao.SeasonDao;
 import fi.cs.helsinki.glindstr.dao.SeasonDaoImpl;
-import fi.cs.helsinki.glindstr.dao.TeamDao;
-import fi.cs.helsinki.glindstr.dao.TeamDaoImpl;
 import fi.cs.helsinki.glindstr.models.League;
 import fi.cs.helsinki.glindstr.models.Season;
 import java.io.IOException;
@@ -47,9 +45,17 @@ public class GameServlet extends HttpServlet
      * data access object for game table
      */
     private GameDao gameDao;
+    /**
+     * data access object for league table
+     */
     private LeagueDao leagueDao;
-    private TeamDao teamDao;
+    /**
+     * data access object for the season table
+     */
     private SeasonDao seasonDao;
+    /**
+     * the game being created
+     */
     private Game game;
 
     /**
@@ -60,7 +66,6 @@ public class GameServlet extends HttpServlet
         super();
         this.gameDao = new GameDaoImpl();
         this.leagueDao = new LeagueDaoImpl();
-        this.teamDao = new TeamDaoImpl();
         this.seasonDao = new SeasonDaoImpl();
         this.game = new Game();
     }
@@ -126,11 +131,7 @@ public class GameServlet extends HttpServlet
             int seasonId = Integer.parseInt(request.getParameter("seasonId"));
             game.setLeagueId(leagueId);
             game.setSeasonId(seasonId);
-            League chosenLeague = leagueDao.getById(leagueId);
-            Season chosenSeason = seasonDao.getById(seasonId);
-            session.setAttribute("teams", gameDao.getTeamsByLeagueAndSeason(leagueId, seasonId));
-            session.setAttribute("league", chosenLeague);
-            session.setAttribute("season", chosenSeason);
+            setSessionAttributes( leagueId, seasonId, session);
             redirect = ADD_GAME2;
         } else
         {
@@ -147,5 +148,20 @@ public class GameServlet extends HttpServlet
 
         RequestDispatcher rd = request.getRequestDispatcher(redirect);
         rd.forward(request, response);
+    }
+
+    /**
+     * Adds teams, league and season attributes to the session.
+     * @param leagueId the id of the league that the user has selected
+     * @param seasonId the id of the season that the user has selected
+     * @param session the current session
+     */
+    private void setSessionAttributes(int leagueId, int seasonId, HttpSession session)
+    {
+        League chosenLeague = leagueDao.getById(leagueId);
+        Season chosenSeason = seasonDao.getById(seasonId);
+        session.setAttribute("teams", gameDao.getTeamsByLeagueAndSeason(leagueId, seasonId));
+        session.setAttribute("league", chosenLeague);
+        session.setAttribute("season", chosenSeason);
     }
 }
