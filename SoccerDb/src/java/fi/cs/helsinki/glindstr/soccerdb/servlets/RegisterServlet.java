@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet
             User user = new User();
             user.setUsername(username);
             user.setPass(password);
-            dao.addUser(user);
+            dao.save(user);
             redirect = LOGIN;
         }
         else

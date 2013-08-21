@@ -20,8 +20,8 @@ public class AuthenticationFilter implements Filter
         HttpServletResponse httpresponse = (HttpServletResponse) response;
         
         HttpSession session = httprequest.getSession();
-        String logged = (String) session.getAttribute("logged");
-        if (logged == null)
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null)
         {
             httpresponse.sendRedirect("login.jsp");
             return;

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addmembership
-    Created on : Aug 19, 2013, 3:10:27 PM
+    Document   : addgame
+    Created on : Aug 20, 2013, 8:53:54 PM
     Author     : Gabriel
 --%>
 
@@ -10,22 +10,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Membership</title>
+        <title>Add Game</title>
     </head>
-    <body>
-        <form action ='MembershipServlet' method="POST">
-            <p><b>Add New Membership</b></p>
+    <body>        
+        <form action ='GameServlet' method="POST">
+            <p><b>Add New Game</b></p>
+            <p>Start by selecting the league and season for the game</p>
             <p> Select league:
                 <select name="leagueId">
                     <c:forEach items="${leagues}" var = "league">
                         <option value="${league.id}"><c:out value="${league.name}" /></option>
-                    </c:forEach>
-                </select>
-            </p>
-            <p> Select team:
-                <select name="teamId">
-                    <c:forEach items="${teams}" var = "team">
-                        <option value="${team.id}"><c:out value="${team.name}" /></option>
                     </c:forEach>
                 </select>
             </p>
@@ -36,7 +30,8 @@
                     </c:forEach>
                 </select>
             </p>
-            <p> <input type="submit" value="Add" /> </p>
+            <p> <input type="submit" value="Continue" /><input
+                type="hidden" name="step" value="first" /> </p>
         </form>
     </body>
 </html>

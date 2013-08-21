@@ -2,12 +2,14 @@
 
 package fi.cs.helsinki.glindstr.models;
 
+import java.io.Serializable;
+
 
 /**
  * This class represents records of the season table.
  * 
  */
-public class Season 
+public class Season implements Serializable
 {
     /**
      * the id number of the season

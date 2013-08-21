@@ -2,12 +2,14 @@
 
 package fi.cs.helsinki.glindstr.models;
 
+import java.io.Serializable;
+
 
 /**
  * This class represents records of the team table.
  * 
  */
-public class Team 
+public class Team implements Serializable
 {
     /**
      * the id number of the team

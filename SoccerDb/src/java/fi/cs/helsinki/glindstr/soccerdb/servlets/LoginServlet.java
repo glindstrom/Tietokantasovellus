@@ -1,5 +1,6 @@
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
+import fi.cs.helsinki.glindstr.dao.UserDao;
 import fi.cs.helsinki.glindstr.models.User;
 import fi.cs.helsinki.glindstr.dao.UserDaoImpl;
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class LoginServlet extends HttpServlet
     /**
      * data access object for users table
      */
-    private UserDaoImpl dao;
+    private UserDao dao;
 
     /**
      * Class constructor.
@@ -64,7 +65,7 @@ public class LoginServlet extends HttpServlet
             if (dao.validateUser(user))
             {
                 HttpSession session = request.getSession();
-                session.setAttribute("logged", "logged");
+                session.setAttribute("userId", user.getId());
                 redirect = WELCOME;
             } 
             else

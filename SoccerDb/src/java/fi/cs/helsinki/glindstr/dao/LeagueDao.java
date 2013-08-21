@@ -16,4 +16,11 @@ public interface LeagueDao extends BaseDao<League>
      * @return a list with all leagues
      */
     List<League> getAllLeagues();
+    
+    /**
+     * Returns a league based on the id. 
+     * @param id the id of the record
+     * @return a record of a the league table
+     */
+     League getById(int id);
 }

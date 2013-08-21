@@ -2,12 +2,14 @@
 
 package fi.cs.helsinki.glindstr.models;
 
+import java.io.Serializable;
+
 
 /**
  * This class represents records of the league table.
  * 
  */
-public class League 
+public class League implements Serializable
 {
     /**
      * the id number of the league

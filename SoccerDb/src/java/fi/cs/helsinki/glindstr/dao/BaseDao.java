@@ -20,4 +20,6 @@ public interface BaseDao<T>
      * @param id the record to be deleted
      */
     void delete(int id);
+    
+    
 }

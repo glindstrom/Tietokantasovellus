@@ -30,12 +30,10 @@ public class MembershipDaoImpl implements MembershipDao
             ps.setInt(3, membership.getTeamId());
             ps.executeUpdate();
             conn.close();
-        } 
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             System.out.println(e);
-        } 
-        finally
+        } finally
         {
             if (conn != null)
             {
@@ -56,7 +54,14 @@ public class MembershipDaoImpl implements MembershipDao
         List<Membership> memberships = new ArrayList();
         try
         {
-            String sql = "SELECT * FROM membership";
+            String sql = "SELECT membership.*, s.name as season_name, l.name AS league_name, t.name as team_name"
+                    + " FROM membership"
+                    + " INNER JOIN season s ON"
+                    + " membership.season_id = s.id"
+                    + " INNER JOIN league l ON"
+                    + " membership.league_id = l.id"
+                    + " INNER JOIN team t ON"
+                    + " membership.team_id = t.id";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
@@ -66,14 +71,15 @@ public class MembershipDaoImpl implements MembershipDao
                 membership.setLeagueId(rs.getInt("league_id"));
                 membership.setSeasonId(rs.getInt("season_id"));
                 membership.setTeamId(rs.getInt("team_id"));
+                membership.setLeagueName(rs.getString("league_name"));
+                membership.setSeasonName(rs.getString("season_name"));
+                membership.setTeamName(rs.getString("team_name"));
                 memberships.add(membership);
             }
-        } 
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             System.out.println(e);
-        } 
-        finally
+        } finally
         {
             if (conn != null)
             {
@@ -99,20 +105,17 @@ public class MembershipDaoImpl implements MembershipDao
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
-        } 
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             System.out.println(e);
-        } 
-        finally
+        } finally
         {
             if (conn != null)
             {
                 try
                 {
                     conn.close();
-                } 
-                catch (SQLException e)
+                } catch (SQLException e)
                 {
                     System.out.println(e);
                 }

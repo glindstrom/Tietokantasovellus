@@ -19,4 +19,11 @@ public interface SeasonDao extends BaseDao<Season>
      * @return a list with all seasons
      */
     List<Season> getAllSeasons();
+    
+    /**
+     * Returns a season based on the id. 
+     * @param id the id of the record
+     * @return a record of a the season table
+     */
+     Season getById(int id);
 }

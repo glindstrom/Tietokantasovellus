@@ -30,6 +30,11 @@ CREATE TABLE game(
 	id serial PRIMARY KEY,
 	home_team integer references team(id) ON DELETE CASCADE,
     away_team integer references team(id) ON DELETE CASCADE,
+	league_id int references league(id) ON DELETE CASCADE,
+    season_id int references season(id) ON DELETE CASCADE,
+	home_score integer,
+	away_score integer,
+	game_date date,
 	time_edited timestamp,
 	edited_by integer references users(id) ON DELETE RESTRICT
 );

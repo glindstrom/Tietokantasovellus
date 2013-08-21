@@ -9,15 +9,11 @@ import fi.cs.helsinki.glindstr.models.User;
  *
  * @author Gabriel
  */
-public class UserDaoImpl
+public class UserDaoImpl implements UserDao
 {
 
-    /**
-     * Adds a new user to the database.
-     *
-     * @param user the user to be added
-     */
-    public void addUser(User user)
+    @Override
+    public void save(User user)
     {
         Connection conn = ConnectionProvider.createConnection();
         try
@@ -46,12 +42,8 @@ public class UserDaoImpl
         }
     }
 
-    /**
-     * Checks if the user has registered.
-     *
-     * @param user the user to be validated
-     * @return true if the username and password matches the database.
-     */
+
+    @Override
     public boolean validateUser(User user)
     {
         boolean status = false;
@@ -64,6 +56,10 @@ public class UserDaoImpl
             ps.setString(2, user.getPass());
             ResultSet rs = ps.executeQuery();
             status = rs.next();
+            if (status)
+            {
+                user.setId(rs.getInt(1));
+            }
         } catch (SQLException e)
         {
             System.out.println(e);
@@ -80,6 +76,35 @@ public class UserDaoImpl
             }
         }
         return status;
+    }
+
+
+    @Override
+    public void delete(int id)
+    {
+         Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "DELETE FROM membership WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
     }
     
 }

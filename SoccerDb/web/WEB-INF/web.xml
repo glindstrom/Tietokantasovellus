@@ -32,6 +32,10 @@
         <servlet-name>MembershipServlet</servlet-name>
         <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.MembershipServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GameServlet</servlet-name>
+        <servlet-class>fi.cs.helsinki.glindstr.soccerdb.servlets.GameServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>MembershipServlet</servlet-name>
         <url-pattern>/MembershipServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GameServlet</servlet-name>
+        <url-pattern>/GameServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -2,11 +2,13 @@
 
 package fi.cs.helsinki.glindstr.models;
 
+import java.io.Serializable;
+
 /**
  * This class represents a record of the membership table.
  * A membership defines which teams play in a league a certain season.
  */
-public class Membership 
+public class Membership implements Serializable
 {
     /**
      * the id number of the membership
@@ -27,6 +29,21 @@ public class Membership
      * the id number of the team
      */
     private int teamId;
+    
+    /**
+     * the name of the season
+     */
+    private String seasonName;
+    
+    /**
+     * the name of the team
+     */
+    private String teamName;
+    
+    /**
+     * the name of the league
+     */
+    private String leagueName;
 
     public int getId()
     {
@@ -48,6 +65,36 @@ public class Membership
         return teamId;
     }
 
+    public String getLeagueName()
+    {
+        return leagueName;
+    }
+
+    public String getSeasonName()
+    {
+        return seasonName;
+    }
+
+    public String getTeamName()
+    {
+        return teamName;
+    }
+
+    public void setLeagueName(String league_name)
+    {
+        this.leagueName = league_name;
+    }
+
+    public void setSeasonName(String season_name)
+    {
+        this.seasonName = season_name;
+    }
+
+    public void setTeamName(String team_name)
+    {
+        this.teamName = team_name;
+    }        
+
     public void setId(int id)
     {
         this.id = id;
@@ -66,5 +113,7 @@ public class Membership
     public void setTeamId(int teamId)
     {
         this.teamId = teamId;
-    }        
+    }
+    
+    
 }

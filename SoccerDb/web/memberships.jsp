@@ -18,9 +18,8 @@
         <table border=1>
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>League</th>
-                    <th>Season</th>
+                    <th>Season</th> 
                     <th>Team</th>
                     <th></th>
                 </tr>
@@ -28,10 +27,9 @@
             <tbody>
                 <c:forEach items="${memberships}" var = "membership">
                     <tr>
-                        <td><c:out value="${membership.id}" /></td>
-                        <td><c:out value="${membership.leagueId}" /></td>
-                        <td><c:out value="${membership.seasonId}" /></td>
-                        <td><c:out value="${team.leagueId}" /></td>
+                        <td><c:out value="${membership.leagueName}" /></td>
+                        <td><c:out value="${membership.seasonName}" /></td>
+                        <td><c:out value="${membership.teamName}" /></td>
                         <td><a href="MembershipServlet?action=delete&id=<c:out value="${membership.id}" />">Delete</a></td>
                     </tr>
                 </c:forEach>

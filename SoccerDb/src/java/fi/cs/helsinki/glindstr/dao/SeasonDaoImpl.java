@@ -115,4 +115,37 @@ public class SeasonDaoImpl implements SeasonDao
             }
         }
     }
+    
+     @Override
+    public Season getById(int id)
+    {
+        Season season = new Season();
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT name FROM season WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            season.setId(id);
+            season.setName(rs.getString("name"));
+     
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException ignore)
+                {
+                }
+            }
+        }
+        return season;
+    }
 }

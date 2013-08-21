@@ -124,7 +124,7 @@ public class MembershipServlet extends HttpServlet
         membership.setTeamId(Integer.parseInt(request.getParameter("teamId")));
         membershipDao.save(membership);
         RequestDispatcher rd = request.getRequestDispatcher(MEMBERSHIP_LIST);
-        request.setAttribute("membership", membershipDao.getAllMemberships());
+        request.setAttribute("memberships", membershipDao.getAllMemberships());
         rd.forward(request, response);
     }
 

@@ -25,7 +25,6 @@ public class LeagueDaoImpl implements LeagueDao
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, league.getName());
             ps.executeUpdate();
-            conn.close();
         } catch (SQLException e)
         {
             System.out.println(e);
@@ -111,5 +110,38 @@ public class LeagueDaoImpl implements LeagueDao
                 }
             }
         } 
+    }
+
+    @Override
+    public League getById(int id)
+    {
+        League league = new League();
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT name FROM league WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            league.setId(id);
+            league.setName(rs.getString("name"));
+     
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException ignore)
+                {
+                }
+            }
+        }
+        return league;
     }
 }
