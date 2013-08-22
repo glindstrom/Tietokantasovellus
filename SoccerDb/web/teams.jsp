@@ -28,7 +28,7 @@
                     <tr>
                         <td><c:out value="${team.id}" /></td>
                         <td><c:out value="${team.name}" /></td>
-                        <td><a href="LeagueServlet?action=delete&id=<c:out value="${team.id}" />">Delete</a></td>
+                        <td><a href="TeamServlet?action=delete&id=<c:out value="${team.id}" />">Delete</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

@@ -8,9 +8,13 @@ import fi.cs.helsinki.glindstr.dao.LeagueDao;
 import fi.cs.helsinki.glindstr.dao.LeagueDaoImpl;
 import fi.cs.helsinki.glindstr.dao.SeasonDao;
 import fi.cs.helsinki.glindstr.dao.SeasonDaoImpl;
+import fi.cs.helsinki.glindstr.dao.StandingsDao;
+import fi.cs.helsinki.glindstr.dao.StandingsDaoImpl;
 import fi.cs.helsinki.glindstr.models.League;
 import fi.cs.helsinki.glindstr.models.Season;
+import fi.cs.helsinki.glindstr.models.Standing;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,18 +27,36 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class StandingsServlet extends HttpServlet
 {
+    /**
+     * location of the welcome page
+     */
+    private static final String MENU = "/welcome.jsp";
+    
+    /**
+     * location of the standings front page
+     */
     private static final String STANDINGS = "/standings.jsp";
+    
+    /**
+     * location of the standings table
+     */
     private static final String VIEW_STANDINGS = "viewstandings.jsp";
     
     /**
      * data access object for league table
      */
     private LeagueDao leagueDao;
+    
     /**
      * data access object for the season table
      */
     private SeasonDao seasonDao;
-
+    
+    /**
+     * data access object for the standings quesry
+     */
+    private StandingsDao standingsDao;
+    
     /**
      * Class constructor.
      */
@@ -43,6 +65,7 @@ public class StandingsServlet extends HttpServlet
         super();
         this.leagueDao = new LeagueDaoImpl();
         this.seasonDao = new SeasonDaoImpl();
+        this.standingsDao = new StandingsDaoImpl();
     }
     
     
@@ -61,11 +84,19 @@ public class StandingsServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        String redirect;
+        if (request.getParameter("action").equalsIgnoreCase("standings"))
+        {
+            redirect = STANDINGS;
+        }
+        else
+        {
+            redirect = MENU;
+        }
         request.setAttribute("leagues", this.leagueDao.getAllLeagues());
         request.setAttribute("seasons", this.seasonDao.getAllSeasons());
         RequestDispatcher rd = request.getRequestDispatcher(STANDINGS);
-        rd.forward(request, response);
-        
+        rd.forward(request, response);        
     }
 
     /**
@@ -81,18 +112,24 @@ public class StandingsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        setLeagueAndSeasonAttributes(request);
+        setAttributes(request);
         RequestDispatcher rd = request.getRequestDispatcher(VIEW_STANDINGS);
         rd.forward(request, response);
     }
-
-    private void setLeagueAndSeasonAttributes(HttpServletRequest request)
+    
+    /**
+     * Sets the attributes needed for displaying the standings.
+     * @param request servlet request
+     */
+    private void setAttributes(HttpServletRequest request)
     {
         int leagueId = Integer.parseInt(request.getParameter("leagueId"));
         int seasonId = Integer.parseInt(request.getParameter("seasonId"));
         League chosenLeague = leagueDao.getById(leagueId);
         Season chosenSeason = seasonDao.getById(seasonId);
+        List<Standing> standings = standingsDao.getAllStandings(seasonId, leagueId);
         request.setAttribute("league", chosenLeague);
         request.setAttribute("season", chosenSeason);
+        request.setAttribute("standings", standings);
     }
 }

@@ -17,11 +17,11 @@ public class AuthenticationFilter implements Filter
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
     {
         HttpServletRequest httprequest = (HttpServletRequest) request;
-        HttpServletResponse httpresponse = (HttpServletResponse) response;
-        
+        HttpServletResponse httpresponse = (HttpServletResponse) response;        
         HttpSession session = httprequest.getSession();
+        String path = httprequest.getServletPath();
         Integer userId = (Integer) session.getAttribute("userId");
-        if (userId == null)
+        if (userId == null && !path.equals("/login.jsp"))
         {
             httpresponse.sendRedirect("login.jsp");
             return;
