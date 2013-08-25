@@ -1,6 +1,6 @@
 
 
-package fi.cs.helsinki.glindstr.dbconnection;
+package fi.cs.helsinki.glindstr.soccerdb.dbconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

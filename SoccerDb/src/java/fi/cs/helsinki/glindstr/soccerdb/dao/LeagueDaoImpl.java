@@ -1,7 +1,7 @@
-package fi.cs.helsinki.glindstr.dao;
+package fi.cs.helsinki.glindstr.soccerdb.dao;
 
-import fi.cs.helsinki.glindstr.dbconnection.ConnectionProvider;
-import fi.cs.helsinki.glindstr.models.League;
+import fi.cs.helsinki.glindstr.soccerdb.dbconnection.ConnectionProvider;
+import fi.cs.helsinki.glindstr.soccerdb.models.League;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fi.cs.helsinki.glindstr.dao;
+package fi.cs.helsinki.glindstr.soccerdb.dao;
 
-import fi.cs.helsinki.glindstr.models.Season;
+import fi.cs.helsinki.glindstr.soccerdb.models.Season;
 import java.util.List;
 
 /**

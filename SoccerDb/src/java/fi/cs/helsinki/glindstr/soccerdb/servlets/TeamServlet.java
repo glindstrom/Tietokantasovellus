@@ -1,9 +1,9 @@
 
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
-import fi.cs.helsinki.glindstr.dao.TeamDao;
-import fi.cs.helsinki.glindstr.dao.TeamDaoImpl;
-import fi.cs.helsinki.glindstr.models.Team;
+import fi.cs.helsinki.glindstr.soccerdb.dao.TeamDao;
+import fi.cs.helsinki.glindstr.soccerdb.dao.TeamDaoImpl;
+import fi.cs.helsinki.glindstr.soccerdb.models.Team;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

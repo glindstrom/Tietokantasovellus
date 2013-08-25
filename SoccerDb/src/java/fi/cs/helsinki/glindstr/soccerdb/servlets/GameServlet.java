@@ -1,14 +1,14 @@
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
-import fi.cs.helsinki.glindstr.dao.LeagueDao;
-import fi.cs.helsinki.glindstr.dao.LeagueDaoImpl;
-import fi.cs.helsinki.glindstr.models.Game;
-import fi.cs.helsinki.glindstr.dao.GameDao;
-import fi.cs.helsinki.glindstr.dao.GameDaoImpl;
-import fi.cs.helsinki.glindstr.dao.SeasonDao;
-import fi.cs.helsinki.glindstr.dao.SeasonDaoImpl;
-import fi.cs.helsinki.glindstr.models.League;
-import fi.cs.helsinki.glindstr.models.Season;
+import fi.cs.helsinki.glindstr.soccerdb.dao.LeagueDao;
+import fi.cs.helsinki.glindstr.soccerdb.dao.LeagueDaoImpl;
+import fi.cs.helsinki.glindstr.soccerdb.models.Game;
+import fi.cs.helsinki.glindstr.soccerdb.dao.GameDao;
+import fi.cs.helsinki.glindstr.soccerdb.dao.GameDaoImpl;
+import fi.cs.helsinki.glindstr.soccerdb.dao.SeasonDao;
+import fi.cs.helsinki.glindstr.soccerdb.dao.SeasonDaoImpl;
+import fi.cs.helsinki.glindstr.soccerdb.models.League;
+import fi.cs.helsinki.glindstr.soccerdb.models.Season;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -1,5 +1,5 @@
 
-package fi.cs.helsinki.glindstr.dao;
+package fi.cs.helsinki.glindstr.soccerdb.dao;
 
 /**
  * An interface for database operations.

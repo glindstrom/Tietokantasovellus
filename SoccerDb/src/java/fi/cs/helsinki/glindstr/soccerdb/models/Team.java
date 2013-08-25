@@ -1,23 +1,23 @@
 
 
-package fi.cs.helsinki.glindstr.models;
+package fi.cs.helsinki.glindstr.soccerdb.models;
 
 import java.io.Serializable;
 
 
 /**
- * This class represents records of the league table.
+ * This class represents records of the team table.
  * 
  */
-public class League implements Serializable
+public class Team implements Serializable
 {
     /**
-     * the id number of the league
+     * the id number of the team
      */
     private int id;
     
     /**
-     * the name of the league
+     * the name of the team
      */
     private String name;
      

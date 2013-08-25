@@ -1,8 +1,8 @@
-package fi.cs.helsinki.glindstr.dao;
+package fi.cs.helsinki.glindstr.soccerdb.dao;
 
 import java.sql.*;
-import fi.cs.helsinki.glindstr.dbconnection.ConnectionProvider;
-import fi.cs.helsinki.glindstr.models.User;
+import fi.cs.helsinki.glindstr.soccerdb.dbconnection.ConnectionProvider;
+import fi.cs.helsinki.glindstr.soccerdb.models.User;
 
 /**
  * This class provides database access for the user registration function.

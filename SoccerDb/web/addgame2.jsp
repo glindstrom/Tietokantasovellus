@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" name="date" placeholder="YYYY-MM-DD" autofocus required /></td>
+                        <td><input type="date" name="date" placeholder="YYYY-MM-DD" autofocus required /></td>
                         <td><select name="homeTeamId">
                                 <c:forEach items="${teams}" var = "homeTeam">
                                     <option value="${homeTeam.id}"><c:out value="${homeTeam.name}" /></option>
@@ -41,8 +41,8 @@
                                 </c:forEach>
                             </select>
                         </td>
-                        <td><input type="text" name="homeScore" /></td>
-                        <td><input type="text" name="awayScore" /></td>
+                        <td><input type="number" name="homeScore" min="0" /></td>
+                        <td><input type="number" name="awayScore" min="0" /></td>
                     </tr>
                 </tbody>
             </table>

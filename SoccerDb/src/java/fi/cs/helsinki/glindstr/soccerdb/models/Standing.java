@@ -1,6 +1,6 @@
 
 
-package fi.cs.helsinki.glindstr.models;
+package fi.cs.helsinki.glindstr.soccerdb.models;
 
 /**
  * This class represents a row of the standings query.

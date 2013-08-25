@@ -1,7 +1,7 @@
 
-package fi.cs.helsinki.glindstr.dao;
+package fi.cs.helsinki.glindstr.soccerdb.dao;
 
-import fi.cs.helsinki.glindstr.models.Standing;
+import fi.cs.helsinki.glindstr.soccerdb.models.Standing;
 import java.util.List;
 
 /**

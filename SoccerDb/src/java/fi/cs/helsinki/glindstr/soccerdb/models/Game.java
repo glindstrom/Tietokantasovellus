@@ -1,6 +1,6 @@
 
 
-package fi.cs.helsinki.glindstr.models;
+package fi.cs.helsinki.glindstr.soccerdb.models;
 
 import java.io.Serializable;
 import java.sql.Date;

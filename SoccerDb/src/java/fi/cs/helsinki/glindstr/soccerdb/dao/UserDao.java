@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fi.cs.helsinki.glindstr.dao;
+package fi.cs.helsinki.glindstr.soccerdb.dao;
 
-import fi.cs.helsinki.glindstr.models.User;
+import fi.cs.helsinki.glindstr.soccerdb.models.User;
 
 /**
  * An interface for database operations on the users table. 
