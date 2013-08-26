@@ -7,6 +7,24 @@
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/welcome.jsp</url-pattern>
+        <url-pattern>/addgame.jsp</url-pattern>
+        <url-pattern>/addgame2.jsp</url-pattern>
+        <url-pattern>/addmembership.jsp</url-pattern>
+        <url-pattern>/addseason.jsp</url-pattern>
+        <url-pattern>/addteam.jsp</url-pattern>
+        <url-pattern>/games.jsp</url-pattern>
+        <url-pattern>/leagues.jsp</url-pattern>
+        <url-pattern>/memberships.jsp</url-pattern>
+        <url-pattern>/standings.jsp</url-pattern>
+        <url-pattern>/seasons.jsp</url-pattern>
+        <url-pattern>/teams.jsp</url-pattern>
+        <url-pattern>/viewstandings.jsp</url-pattern>
+        <servlet-name>StandingsServlet</servlet-name>
+        <servlet-name>TeamServlet</servlet-name>
+        <servlet-name>SeasonServlet</servlet-name>
+        <servlet-name>MembershipServlet</servlet-name>
+        <servlet-name>GameServlet</servlet-name>
+        <servlet-name>LeagueServlet</servlet-name>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
