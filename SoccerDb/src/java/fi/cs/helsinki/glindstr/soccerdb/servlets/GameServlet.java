@@ -20,7 +20,6 @@ import javax.servlet.http.HttpSession;
 /**
  * This servlet handles the managing of games.
  *
- * @author Gabriel
  */
 public class GameServlet extends HttpServlet
 {

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * An interface for retrieving the standings from the database.
- * Provides a method for getting a list with all standings
+ * Provides a method for getting a list with all standings.
  */
 public interface StandingsDao
 {

@@ -5,7 +5,7 @@ import fi.cs.helsinki.glindstr.soccerdb.models.Team;
 import java.util.List;
 
 /**
- * An interface for database operations on the game table. The MemebershipDao
+ * An interface for database operations on the game table. The GameDao
  * interface provides a method for gaining a list of all games.
  *
  */

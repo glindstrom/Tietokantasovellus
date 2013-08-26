@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This servlet handles the management of leagues.
- * @author Gabriel
+ * 
  */
 public class LeagueServlet extends HttpServlet
 {

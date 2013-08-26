@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * This class provides database access for the team table.
  *
- * @author Gabriel
  */
 public class TeamDaoImpl implements TeamDao
 {

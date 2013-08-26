@@ -9,6 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class retrieves the standings from the database.
+ * 
+ */
 public class StandingsDaoImpl implements StandingsDao
 {
 

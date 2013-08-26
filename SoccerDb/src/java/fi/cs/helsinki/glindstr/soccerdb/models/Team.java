@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 
 /**
- * This class represents records of the team table.
+ * This class represents a record of the team table.
  * 
  */
 public class Team implements Serializable

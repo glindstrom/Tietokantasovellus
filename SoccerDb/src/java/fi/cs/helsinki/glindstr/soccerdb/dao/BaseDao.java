@@ -5,7 +5,7 @@ package fi.cs.helsinki.glindstr.soccerdb.dao;
  * An interface for database operations.
  * The BaseDao interface provides a method for inserting records to the database.
  * The BaseDao interface provides a method for deleting records from the database.
- * @author Gabriel
+ * 
  */
 public interface BaseDao<T>
 {

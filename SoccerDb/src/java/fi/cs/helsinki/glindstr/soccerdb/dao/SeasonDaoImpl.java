@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * This class provides database access for the season table.
  *
- * @author Gabriel
  */
 public class SeasonDaoImpl implements SeasonDao
 {

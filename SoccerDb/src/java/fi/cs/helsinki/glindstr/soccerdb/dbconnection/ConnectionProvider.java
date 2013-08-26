@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * This class handles communication with the database.
+ * This class provides a connection to the specified database.
  * 
  */
 public class ConnectionProvider 

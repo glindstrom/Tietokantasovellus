@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 
 /**
- * This class represents records of the season table.
+ * This class represents a record of the season table.
  * 
  */
 public class Season implements Serializable

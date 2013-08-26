@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This servlet handles the management of teams.
- * @author Gabriel
+ * 
  */
 public class TeamServlet extends HttpServlet
 {

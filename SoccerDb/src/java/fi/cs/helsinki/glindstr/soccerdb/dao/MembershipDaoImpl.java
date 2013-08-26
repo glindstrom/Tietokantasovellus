@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * This class provides database access for the membership table.
  *
- * @author Gabriel
  */
 public class MembershipDaoImpl implements MembershipDao
 {

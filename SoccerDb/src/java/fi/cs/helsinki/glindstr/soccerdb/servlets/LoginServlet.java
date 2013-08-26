@@ -73,7 +73,6 @@ public class LoginServlet extends HttpServlet
                 request.setAttribute("message", "Unknown username and/or password, try again");
                 redirect = LOGIN;
             }
-
         }
 
         RequestDispatcher rd = request.getRequestDispatcher(redirect);
