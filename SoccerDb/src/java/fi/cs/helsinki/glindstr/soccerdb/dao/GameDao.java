@@ -19,11 +19,18 @@ public interface GameDao extends BaseDao<Game>
      */
     List<Game> getAllGames();
 
+
+    
     /**
-     * Returns a list of teams playing in a specified league in a specified season.
-     * @param leagueId the id of the specified league
-     * @param seasonId the id of the specified season
-     * @return a list of teams
+     * Returns a game record from the database based on the id.
+     * @param id the id of the record
+     * @return a game record
      */
-    List<Team> getTeamsByLeagueAndSeason(int leagueId, int seasonId);
+    Game getGameById(int id);
+    
+    /**
+     * Updates the result of the specified game.
+     * @param game the game of which the score should be updated
+     */
+    void updateScore(Game game);
 }

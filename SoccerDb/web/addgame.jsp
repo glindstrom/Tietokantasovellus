@@ -31,7 +31,7 @@
                 </select>
             </p>
             <p> <input type="submit" value="Continue" /><input
-                type="hidden" name="step" value="first" /> </p>
+                type="hidden" name="action" value="addgame1" /> </p>
         </form>
     </body>
 </html>

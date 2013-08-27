@@ -26,11 +26,11 @@ public class Game implements Serializable
     /**
      * the score of the home team
      */
-    private int homeScore;
+    private Integer homeScore = null;
     /**
      * the score of the away team
      */
-    private int awayScore;
+    private Integer awayScore = null;
     /**
      * the id of the last user to edit the record
      */
@@ -132,10 +132,17 @@ public class Game implements Serializable
     public String getAwayTeamName()
     {
         return awayTeamName;
+    }    
+    
+    public String getAwayScoreAsString()
+    {
+        if (awayScore == null)
+        {
+            return "";
+        }
+        return awayScore.toString();
     }
     
-    
-
     public int getAwayScore()
     {
         return awayScore;
@@ -155,10 +162,19 @@ public class Game implements Serializable
     {
         return gameDate;
     }
-
+    
     public int getHomeScore()
     {
         return homeScore;
+    }
+
+    public String getHomeScoreAsString()
+    {
+        if (homeScore == null)
+        {
+            return "";
+        }
+        return homeScore.toString();
     }
 
     public int getHomeTeamId()

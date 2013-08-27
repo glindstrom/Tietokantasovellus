@@ -78,6 +78,12 @@ public class TeamServlet extends HttpServlet
             dao.delete(Integer.parseInt(request.getParameter("id")));
             request.setAttribute("teams", dao.getAllTeams());
         }
+        else if (action.equalsIgnoreCase("add"))
+        {
+            redirect = TEAM_LIST;
+            insertNewTeamIntoDatabase(request);
+            request.setAttribute("teams", dao.getAllTeams());
+        }
         else
         {
             redirect = MENU;
@@ -100,12 +106,18 @@ public class TeamServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        doGet(request, response);
+    }
+
+    /**
+     * Inserts a new record into the team table. 
+     * @param request servlet request
+     */
+    private void insertNewTeamIntoDatabase(HttpServletRequest request)
+    {
         Team team = new Team();
         team.setName(request.getParameter("name"));
         dao.save(team);
-        RequestDispatcher rd = request.getRequestDispatcher(TEAM_LIST);
-        request.setAttribute("teams", dao.getAllTeams());
-        rd.forward(request, response);
     }
 
   

@@ -47,7 +47,8 @@
                 </tbody>
             </table>
 
-            <p> <input type="submit" value="Add" /> </p>
+            <p> <input type="submit" value="Add" /><input
+                type="hidden" name="action" value="addgame2" /> </p>
         </form>
     </body>
 </html>

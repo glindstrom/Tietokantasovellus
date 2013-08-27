@@ -18,7 +18,6 @@
         <table border=1>
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Season</th>
                     <th></th>
                 </tr>
@@ -26,7 +25,6 @@
             <tbody>
                 <c:forEach items="${seasons}" var = "season">
                     <tr>
-                        <td><c:out value="${season.id}" /></td>
                         <td><c:out value="${season.name}" /></td>
                         <td><a href="SeasonServlet?action=delete&id=<c:out value="${season.id}" />">Delete</a></td>
                     </tr>

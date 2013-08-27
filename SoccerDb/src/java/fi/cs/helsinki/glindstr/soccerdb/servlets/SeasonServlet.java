@@ -78,6 +78,12 @@ public class SeasonServlet extends HttpServlet
             dao.delete(Integer.parseInt(request.getParameter("id")));
             request.setAttribute("seasons", dao.getAllSeasons());
         }
+        else if (action.equalsIgnoreCase("add"))
+        {
+            redirect = SEASON_LIST;
+            insertNewSeasonIntoDatabase(request);
+            request.setAttribute("seasons", dao.getAllSeasons());
+        }
         else
         {
             redirect = MENU;
@@ -100,12 +106,14 @@ public class SeasonServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        doGet(request, response);
+    }
+
+    private void insertNewSeasonIntoDatabase(HttpServletRequest request)
+    {
         Season season = new Season();
         season.setName(request.getParameter("name"));
         dao.save(season);
-        RequestDispatcher rd = request.getRequestDispatcher(SEASON_LIST);
-        request.setAttribute("seasons", dao.getAllSeasons());
-        rd.forward(request, response);
     }
 
   

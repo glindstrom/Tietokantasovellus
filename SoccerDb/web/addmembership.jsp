@@ -14,6 +14,7 @@
     </head>
     <body>
         <form action ='MembershipServlet' method="POST">
+            <input type="hidden" name="action" value="add" />
             <p><b>Add New Membership</b></p>
             <p> Select league:
                 <select name="leagueId">

@@ -2,6 +2,7 @@ package fi.cs.helsinki.glindstr.soccerdb.dao;
 
 import fi.cs.helsinki.glindstr.soccerdb.dbconnection.ConnectionProvider;
 import fi.cs.helsinki.glindstr.soccerdb.models.Membership;
+import fi.cs.helsinki.glindstr.soccerdb.models.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -121,4 +122,47 @@ public class MembershipDaoImpl implements MembershipDao
             }
         }
     }
+    
+     @Override
+    public List<Team> getTeamsByLeagueAndSeason(int leagueId, int seasonId)
+    {
+        Connection conn = ConnectionProvider.createConnection();
+        List<Team> teams = new ArrayList();
+        try
+        {
+            String sql = "SELECT team_id AS id, team.name AS name FROM membership, team "
+                    + "WHERE league_id = ? AND season_id = ? AND membership.team_id = team.id";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, leagueId);
+            ps.setInt(2, seasonId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                Team team = new Team();
+                team.setId(rs.getInt("id"));
+                team.setName(rs.getString("name"));
+                teams.add(team);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        return teams;
+    }
+    
 }

@@ -43,10 +43,19 @@ public class MembershipServlet extends HttpServlet
      */    
     private MembershipDao membershipDao;
     
+    /**
+     * data access object for the league table
+     */
     private LeagueDao leagueDao;
     
+    /**
+     * data access object for the team table
+     */
     private TeamDao teamDao;
     
+    /**
+     * data access object for the season table
+     */
     private SeasonDao seasonDao;
     
     /**
@@ -96,6 +105,12 @@ public class MembershipServlet extends HttpServlet
             membershipDao.delete(Integer.parseInt(request.getParameter("id")));
             request.setAttribute("memberships", membershipDao.getAllMemberships());
         }
+        else if (action.equalsIgnoreCase("add"))
+        {
+            redirect = MEMBERSHIP_LIST;
+            insertNewMembershipIntoDatabase(request);
+            request.setAttribute("memberships", membershipDao.getAllMemberships());
+        }
         else
         {
             redirect = MENU;
@@ -118,14 +133,21 @@ public class MembershipServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        doGet(request, response);
+    }
+
+    /**
+     * Insert new record into the membership table.
+     * @param request servlet request
+     * @throws NumberFormatException if number parsing fails
+     */
+    private void insertNewMembershipIntoDatabase(HttpServletRequest request) throws NumberFormatException
+    {
         Membership membership = new Membership();
         membership.setLeagueId(Integer.parseInt(request.getParameter("leagueId")));
         membership.setSeasonId(Integer.parseInt(request.getParameter("seasonId")));
         membership.setTeamId(Integer.parseInt(request.getParameter("teamId")));
         membershipDao.save(membership);
-        RequestDispatcher rd = request.getRequestDispatcher(MEMBERSHIP_LIST);
-        request.setAttribute("memberships", membershipDao.getAllMemberships());
-        rd.forward(request, response);
     }
 
   

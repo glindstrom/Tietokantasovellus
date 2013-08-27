@@ -14,6 +14,7 @@
     </head>
     <body>        
         <form action ='StandingsServlet' method="POST">
+            <input type="hidden" name="action" value="viewStandings" />
             <p><b>Add New Game</b></p>
             <p>Start by selecting the league and season</p>
             <p> Select league:

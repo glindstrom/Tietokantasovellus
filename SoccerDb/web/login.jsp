@@ -14,9 +14,9 @@
     </head>
 
     <body>
-        <h2> Football database </h2>
+        <h1> Football database </h1>
         <form id="login" method="POST" action="LoginServlet">
-            <h1>Log In</h1>
+            <h2>Log In</h2>
             <fieldset id="inputs">
                 <input name="username" type="text" placeholder="Username" autofocus required>   
                 <input name="password" type="password" placeholder="Password" required>

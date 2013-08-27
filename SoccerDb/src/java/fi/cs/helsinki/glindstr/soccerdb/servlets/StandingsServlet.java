@@ -27,36 +27,32 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class StandingsServlet extends HttpServlet
 {
+
     /**
      * location of the welcome page
      */
     private static final String MENU = "/welcome.jsp";
-    
     /**
      * location of the standings front page
      */
     private static final String STANDINGS = "/standings.jsp";
-    
     /**
      * location of the standings table
      */
     private static final String VIEW_STANDINGS = "viewstandings.jsp";
-    
     /**
      * data access object for league table
      */
     private LeagueDao leagueDao;
-    
     /**
      * data access object for the season table
      */
     private SeasonDao seasonDao;
-    
     /**
      * data access object for the standings quesry
      */
     private StandingsDao standingsDao;
-    
+
     /**
      * Class constructor.
      */
@@ -67,8 +63,6 @@ public class StandingsServlet extends HttpServlet
         this.seasonDao = new SeasonDaoImpl();
         this.standingsDao = new StandingsDaoImpl();
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -85,9 +79,15 @@ public class StandingsServlet extends HttpServlet
             throws ServletException, IOException
     {
         String redirect;
-        if (request.getParameter("action").equalsIgnoreCase("standings"))
+        String action = request.getParameter("action");
+        if (action.equalsIgnoreCase("standings"))
         {
             redirect = STANDINGS;
+        }
+        else if (action.equalsIgnoreCase("viewStandings"))
+        {
+            redirect = VIEW_STANDINGS;
+            setAttributes(request);
         }
         else
         {
@@ -95,8 +95,8 @@ public class StandingsServlet extends HttpServlet
         }
         request.setAttribute("leagues", this.leagueDao.getAllLeagues());
         request.setAttribute("seasons", this.seasonDao.getAllSeasons());
-        RequestDispatcher rd = request.getRequestDispatcher(STANDINGS);
-        rd.forward(request, response);        
+        RequestDispatcher rd = request.getRequestDispatcher(redirect);
+        rd.forward(request, response);
     }
 
     /**
@@ -112,13 +112,12 @@ public class StandingsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        setAttributes(request);
-        RequestDispatcher rd = request.getRequestDispatcher(VIEW_STANDINGS);
-        rd.forward(request, response);
+        doGet(request, response);
     }
-    
+
     /**
      * Sets the attributes needed for displaying the standings.
+     *
      * @param request servlet request
      */
     private void setAttributes(HttpServletRequest request)

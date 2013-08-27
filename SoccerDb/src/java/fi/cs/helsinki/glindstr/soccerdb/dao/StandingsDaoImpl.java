@@ -24,7 +24,7 @@ public class StandingsDaoImpl implements StandingsDao
         try
         {
             String sql = "SELECT name AS TEAM, \n"
-                    + "(SELECT COUNT(*) FROM GAME g WHERE t.id = g.home_team OR t.ID = g.AWAY_TEAM) as GP, "
+                    + "(SELECT COUNT(*) FROM GAME g WHERE (t.id = g.home_team OR t.ID = g.AWAY_TEAM) AND g.home_score is not null AND g.away_score is not null) as GP, "
                     + "(SELECT count(*) FROM game g WHERE ((t.id = g.home_team and home_score > away_score)) "
                     + "OR (t.id=g.away_team and away_score > home_score)) as w, "
                     + "(SELECT count(*) FROM game g WHERE (t.id = g.home_team OR t.id = g.away_team) AND home_score = away_score) as d, "

@@ -78,6 +78,12 @@ public class LeagueServlet extends HttpServlet
             dao.delete(Integer.parseInt(request.getParameter("id")));
             request.setAttribute("leagues", dao.getAllLeagues());
         }
+        else if (action.equalsIgnoreCase("add"))
+        {
+            redirect = LEAGUE_LIST;
+            insertNewLeagueIntoDatabase(request);
+            request.setAttribute("leagues", dao.getAllLeagues());
+        }
         else
         {
             redirect = MENU;
@@ -100,12 +106,18 @@ public class LeagueServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        doGet(request, response);
+    }
+
+    /**
+     * Inserts a new league record into the database.
+     * @param request serlvet request
+     */
+    private void insertNewLeagueIntoDatabase(HttpServletRequest request)
+    {
         League league = new League();
         league.setName(request.getParameter("name"));
         dao.save(league);
-        RequestDispatcher rd = request.getRequestDispatcher(LEAGUE_LIST);
-        request.setAttribute("leagues", dao.getAllLeagues());
-        rd.forward(request, response);
     }
 
   

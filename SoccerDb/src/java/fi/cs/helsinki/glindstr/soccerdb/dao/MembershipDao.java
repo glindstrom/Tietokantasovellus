@@ -5,6 +5,7 @@
 package fi.cs.helsinki.glindstr.soccerdb.dao;
 
 import fi.cs.helsinki.glindstr.soccerdb.models.Membership;
+import fi.cs.helsinki.glindstr.soccerdb.models.Team;
 import java.util.List;
 
 /**
@@ -21,4 +22,12 @@ public interface MembershipDao extends BaseDao<Membership>
      * @return a list of all leagues
      */
     List<Membership> getAllMemberships();
+    
+        /**
+     * Returns a list of teams playing in a specified league in a specified season.
+     * @param leagueId the id of the specified league
+     * @param seasonId the id of the specified season
+     * @return a list of teams
+     */
+    List<Team> getTeamsByLeagueAndSeason(int leagueId, int seasonId);
 }

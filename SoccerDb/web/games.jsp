@@ -26,7 +26,7 @@
                     <th>Score</th>
                     <th>Edited by</th>
                     <th>Last edited</th>
-                    <th></th>
+                    <th colspan="2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -37,10 +37,11 @@
                         <td><c:out value="${game.seasonName}" /></td>
                         <td><c:out value="${game.homeTeamName}" /></td>
                         <td><c:out value="${game.awayTeamName}" /></td>
-                        <td><c:out value="${game.homeScore}" />:<c:out value="${game.awayScore}" /></td>
+                        <td><c:out value="${game.homeScoreAsString}" />:<c:out value="${game.awayScoreAsString}" /></td>
                         <td><c:out value="${game.editedByUsername}" /></td>
-                        <td><c:out value="${game.timestamp}" /></td>
+                        <td><c:out value="${game.timestamp}" /></td>                       
                         <td><a href="GameServlet?action=delete&id=<c:out value="${game.id}" />">Delete</a></td>
+                        <td><a href="GameServlet?action=update&id=<c:out value="${game.id}" />">Update</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
