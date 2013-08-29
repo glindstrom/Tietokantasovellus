@@ -110,14 +110,17 @@ public class LeagueServlet extends HttpServlet
     }
 
     /**
-     * Inserts a new league record into the database.
+     * Inserts a new league record into the database if the record doesn't already exist.
      * @param request serlvet request
      */
     private void insertNewLeagueIntoDatabase(HttpServletRequest request)
     {
         League league = new League();
         league.setName(request.getParameter("name"));
-        dao.save(league);
+        if (!dao.recordExists(league))
+        {
+            dao.save(league);
+        }        
     }
 
   

@@ -82,10 +82,10 @@ public class UserDaoImpl implements UserDao
     @Override
     public void delete(int id)
     {
-         Connection conn = ConnectionProvider.createConnection();
+        Connection conn = ConnectionProvider.createConnection();
         try
         {
-            String sql = "DELETE FROM membership WHERE id=?";
+            String sql = "DELETE FROM users WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -105,6 +105,37 @@ public class UserDaoImpl implements UserDao
                 }
             }
         }
+    }
+
+    @Override
+    public boolean recordExists(User user)
+    {
+        boolean recordExists = true;
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT id FROM users WHERE username = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getUsername());
+            ResultSet rs = ps.executeQuery();
+            recordExists = rs.next();
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {            
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        return recordExists;
     }
     
 }

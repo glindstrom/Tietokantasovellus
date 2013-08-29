@@ -49,7 +49,7 @@ public class LeagueDaoImpl implements LeagueDao
         List<League> leagues = new ArrayList();
         try
         {
-            String sql = "SELECT * FROM league";
+            String sql = "SELECT * FROM league ORDER BY name";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next())
@@ -143,5 +143,36 @@ public class LeagueDaoImpl implements LeagueDao
             }
         }
         return league;
+    }
+    
+     @Override
+    public boolean recordExists(League league)
+    {
+        boolean recordExists = true;
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT name FROM league WHERE name = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, league.getName());
+            ResultSet rs = ps.executeQuery();
+            recordExists = rs.next();
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {            
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        return recordExists;
     }
 }

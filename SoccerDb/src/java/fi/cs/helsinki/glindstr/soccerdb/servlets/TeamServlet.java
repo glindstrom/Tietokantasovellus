@@ -110,14 +110,17 @@ public class TeamServlet extends HttpServlet
     }
 
     /**
-     * Inserts a new record into the team table. 
+     * Inserts a new record into the team table if the record doesn't already exist. 
      * @param request servlet request
      */
     private void insertNewTeamIntoDatabase(HttpServletRequest request)
     {
         Team team = new Team();
         team.setName(request.getParameter("name"));
-        dao.save(team);
+        if (!dao.recordExists(team))
+        {
+            dao.save(team);
+        }        
     }
 
   

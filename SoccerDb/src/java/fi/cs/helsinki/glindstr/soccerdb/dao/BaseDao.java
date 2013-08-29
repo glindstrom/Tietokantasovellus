@@ -21,5 +21,12 @@ public interface BaseDao<T>
      */
     void delete(int id);
     
+    /**
+     * Checks whether a record already exists in the database
+     * @param type the record to be checked
+     * @return true if the record exists in the database, false otherwise
+     */
+    boolean recordExists(T type);
+    
     
 }

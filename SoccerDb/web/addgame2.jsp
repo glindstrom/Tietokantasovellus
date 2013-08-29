@@ -13,6 +13,7 @@
         <title>Add Game</title>
     </head>
     <body>
+        <p>${message}</p>
         <form action ='GameServlet' method="POST">
             <p><b>Add New Game</b></p>
             <p><b>League:</b> <c:out value="${league.name}" /> <b>Season:</b> <c:out value="${season.name}" /></p>

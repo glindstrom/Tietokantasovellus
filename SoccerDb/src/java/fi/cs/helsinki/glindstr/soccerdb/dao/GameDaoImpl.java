@@ -2,7 +2,6 @@ package fi.cs.helsinki.glindstr.soccerdb.dao;
 
 import fi.cs.helsinki.glindstr.soccerdb.dbconnection.ConnectionProvider;
 import fi.cs.helsinki.glindstr.soccerdb.models.Game;
-import fi.cs.helsinki.glindstr.soccerdb.models.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -267,6 +266,39 @@ public class GameDaoImpl implements GameDao
         game.setSeasonName(rs.getString("season_name"));
         game.setLeagueName(rs.getString("league_name"));
         return game;
+    }
+    
+    @Override
+    public boolean recordExists(Game game)
+    {
+        boolean recordExists = true;
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT id FROM game WHERE home_team = ? AND away_team = ? AND game_date = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, game.getHomeTeamId());
+            ps.setInt(2, game.getAwayTeamId());
+            ps.setDate(3, game.getGameDate());
+            ResultSet rs = ps.executeQuery();
+            recordExists = rs.next();
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {            
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        return recordExists;
     }
 
 }

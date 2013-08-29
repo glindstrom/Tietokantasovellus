@@ -12,6 +12,7 @@
         <title>User registration</title>
     </head>
     <body>
+        <p>${message}</p>
         <form method="POST" action='RegisterServlet' name="register"><input
                 type="hidden" name="action" value="insert" />
             <p><b>Add New User</b></p>

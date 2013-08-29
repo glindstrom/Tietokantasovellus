@@ -15,6 +15,8 @@
     </head>
     <body>
         <h1>All Memberships</h1>
+        <p><a href="MembershipServlet?action=menu">Menu</a></p>
+        <p><a href="MembershipServlet?action=addmembership">Add membership</a></p>
         <table border=1>
             <thead>
                 <tr>
@@ -34,8 +36,6 @@
                     </tr>
                 </c:forEach>
             </tbody>
-        </table>
-        <p><a href="MembershipServlet?action=addmembership">Add membership</a></p>
-        <p><a href="MembershipServlet?action=menu">Menu</a></p>
+        </table>                
     </body>
 </html>

@@ -1,4 +1,3 @@
-
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
 import fi.cs.helsinki.glindstr.soccerdb.models.User;
@@ -12,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This servlet handles the register functionality.
- * 
+ *
  */
 public class RegisterServlet extends HttpServlet
 {
+
     /**
      * location of registration page
      */
@@ -25,18 +25,18 @@ public class RegisterServlet extends HttpServlet
      */
     private static final String LOGIN = "/login.jsp";
     /**
-     *  data access object for users table 
+     * data access object for users table
      */
     private UserDaoImpl dao;
-    
+
     /**
      * Class constructor.
      */
     public RegisterServlet()
     {
         super();
-        dao = new UserDaoImpl();        
-    }    
+        dao = new UserDaoImpl();
+    }
 
     /**
      * Handles the HTTP
@@ -52,23 +52,34 @@ public class RegisterServlet extends HttpServlet
             throws ServletException, IOException
     {
         String redirect;
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        if (username != null && password != null)
+        User user = createUser(request);
+        if (dao.recordExists(user))
         {
-            User user = new User();
-            user.setUsername(username);
-            user.setPass(password);
-            dao.save(user);
-            redirect = LOGIN;
+            redirect = REGISTER;
+            request.setAttribute("message", "Username " + user.getUsername() + " already exists. Please try again.");
         }
         else
         {
-            redirect = REGISTER;
+           dao.save(user);
+           redirect = LOGIN; 
         }
+        
         RequestDispatcher rd = request.getRequestDispatcher(redirect);
         rd.forward(request, response);
     }
 
-
+    /**
+     * Creates a new user object based on the input.
+     * @param request serlvet request
+     * @return a new user
+     */
+    private User createUser(HttpServletRequest request)
+    {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        User user = new User();
+        user.setUsername(username);
+        user.setPass(password);
+        return user;
+    }
 }

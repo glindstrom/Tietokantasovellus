@@ -15,6 +15,8 @@
     </head>
     <body>
         <h1>All Teams</h1>
+        <p><a href="TeamServlet?action=menu">Menu</a></p>
+        <p><a href="TeamServlet?action=addTeam">Add team</a></p>        
         <table border=1>
             <thead>
                 <tr>
@@ -30,8 +32,6 @@
                     </tr>
                 </c:forEach>
             </tbody>
-        </table>
-        <p><a href="TeamServlet?action=addTeam">Add team</a></p>
-        <p><a href="TeamServlet?action=menu">Menu</a></p>
+        </table>        
     </body>
 </html>

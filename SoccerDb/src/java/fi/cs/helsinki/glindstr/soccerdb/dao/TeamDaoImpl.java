@@ -50,7 +50,7 @@ public class TeamDaoImpl implements TeamDao
         List<Team> teams = new ArrayList();
         try
         {
-            String sql = "SELECT * FROM team";
+            String sql = "SELECT * FROM team ORDER BY name";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
@@ -105,5 +105,36 @@ public class TeamDaoImpl implements TeamDao
                 }
             }
         }
+    }
+    
+    @Override
+    public boolean recordExists(Team team)
+    {
+        boolean recordExists = true;
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT name FROM team WHERE name = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, team.getName());
+            ResultSet rs = ps.executeQuery();
+            recordExists = rs.next();
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {            
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        return recordExists;
     }
 }

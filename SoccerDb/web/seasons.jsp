@@ -15,6 +15,8 @@
     </head>
     <body>
         <h1>All Seasons</h1>
+        <p><a href="SeasonServlet?action=menu">Menu</a></p>
+        <p><a href="SeasonServlet?action=addseason">Add season</a></p>
         <table border=1>
             <thead>
                 <tr>
@@ -30,9 +32,7 @@
                     </tr>
                 </c:forEach>
             </tbody>
-        </table>
-        <p><a href="SeasonServlet?action=addseason">Add season</a></p>
-        <p><a href="SeasonServlet?action=menu">Menu</a></p>
+        </table>                
     </body>
 </html>
 

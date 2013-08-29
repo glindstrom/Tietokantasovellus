@@ -1,4 +1,3 @@
-
 package fi.cs.helsinki.glindstr.soccerdb.servlets;
 
 import fi.cs.helsinki.glindstr.soccerdb.dao.SeasonDao;
@@ -13,30 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This servlet handles the management of seasons.
+ *
  * @author Gabriel
  */
 public class SeasonServlet extends HttpServlet
 {
+
     /**
      * location of the season table
      */
     private static final String SEASON_LIST = "/seasons.jsp";
-    
     /**
      * location of the menu page
      */
     private static final String MENU = "/welcome.jsp";
-    
     /**
-     * location of the add season page 
+     * location of the add season page
      */
     private static final String ADD_SEASON = "/addseason.jsp";
-    
     /**
      * data access object for season table
-     */    
+     */
     private SeasonDao dao;
-    
+
     /**
      * Class constructor.
      */
@@ -45,8 +43,7 @@ public class SeasonServlet extends HttpServlet
         super();
         this.dao = new SeasonDaoImpl();
     }
-  
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
@@ -64,13 +61,13 @@ public class SeasonServlet extends HttpServlet
         String redirect;
         String action = request.getParameter("action");
         if (action.equalsIgnoreCase("listSeasons"))
-        {            
+        {
             redirect = SEASON_LIST;
             request.setAttribute("seasons", dao.getAllSeasons());
         }
         else if (action.equalsIgnoreCase("addseason"))
         {
-            redirect = ADD_SEASON;            
+            redirect = ADD_SEASON;
         }
         else if (action.equalsIgnoreCase("delete"))
         {
@@ -88,7 +85,7 @@ public class SeasonServlet extends HttpServlet
         {
             redirect = MENU;
         }
-        
+
         RequestDispatcher rd = request.getRequestDispatcher(redirect);
         rd.forward(request, response);
     }
@@ -109,12 +106,19 @@ public class SeasonServlet extends HttpServlet
         doGet(request, response);
     }
 
+    /**
+     * Inserts a new season record into the database if the record doesn't
+     * already exist.
+     *
+     * @param request servlet request
+     */
     private void insertNewSeasonIntoDatabase(HttpServletRequest request)
     {
         Season season = new Season();
         season.setName(request.getParameter("name"));
-        dao.save(season);
+        if (!dao.recordExists(season))
+        {
+            dao.save(season);
+        }
     }
-
-  
 }

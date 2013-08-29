@@ -83,13 +83,14 @@ public class StandingsDaoImpl implements StandingsDao
         return standings;
     }
 
-    public static void main(String[] args)
-    {
-        StandingsDao dao = new StandingsDaoImpl();
-        List<Standing> standings = dao.getAllStandings(2, 4);
-        System.out.println(standings.size());
-    }
-
+    /**
+     * Sets the league and season id to the prepared statement in the standings query.
+     * @param ps the prepared statement
+     * @param numberOfPairs the number set action pairs to take
+     * @param leagueId the id of the league
+     * @param seasonId the id of the season
+     * @throws SQLException  if parameterIndex does not correspond to a parameter marker in the SQL statement; if a database access error occurs or this method is called on a closed PreparedStatement
+     */
     private void setLeagueAndSeasonId(PreparedStatement ps, int numberOfPairs, int leagueId, int seasonId) throws SQLException
     {
         int i = 1;

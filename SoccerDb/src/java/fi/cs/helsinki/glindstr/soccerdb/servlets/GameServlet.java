@@ -30,42 +30,34 @@ public class GameServlet extends HttpServlet
      * location of the game table
      */
     private static final String GAME_LIST = "/games.jsp";
-    
     /**
      * location of the menu page
      */
     private static final String MENU = "/welcome.jsp";
-    
     /**
      * location of the add game page
      */
     private static final String ADD_GAME = "/addgame.jsp";
-    
     /**
      * location of the second step for the add game function
      */
     private static final String ADD_GAME2 = "/addgame2.jsp";
-    
     /**
      * location of the update game page
      */
     private static final String UPDATE_GAME = "/updategame.jsp";
-    
     /**
      * data access object for game table
-     */    
+     */
     private GameDao gameDao;
-    
     /**
      * data access object for league table
      */
     private LeagueDao leagueDao;
-    
     /**
      * data access object for the season table
      */
     private SeasonDao seasonDao;
-    
     private MembershipDao membershipDao;
     /**
      * the game being created
@@ -126,13 +118,21 @@ public class GameServlet extends HttpServlet
             game.setLeagueId(leagueId);
             game.setSeasonId(seasonId);
             setSessionAttributes(leagueId, seasonId, session);
-            redirect = ADD_GAME2;            
+            redirect = ADD_GAME2;
         }
         else if (action.equalsIgnoreCase("addgame2"))
         {
-            redirect = GAME_LIST;
-            insertNewGameIntoDatabase(request, session);
-            request.setAttribute("games", gameDao.getAllGames());
+            if (request.getParameter("homeTeamId").equals(request.getParameter("awayTeamId")))
+            {
+                redirect = ADD_GAME2;
+                request.setAttribute("message", "Home Team and Away Team cannot be the same. Please try again.");
+            }
+            else
+            {
+                redirect = GAME_LIST;
+                insertNewGameIntoDatabase(request, session);
+                request.setAttribute("games", gameDao.getAllGames());
+            }
         }
         else if (action.equalsIgnoreCase("update"))
         {
@@ -217,9 +217,10 @@ public class GameServlet extends HttpServlet
         game.setEditedBy((Integer) session.getAttribute("userId"));
         gameDao.save(game);
     }
-    
+
     /**
      * Inserts the updated score in the table.
+     *
      * @param request servlet request
      * @param session the current session
      */

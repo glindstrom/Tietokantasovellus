@@ -137,7 +137,7 @@ public class MembershipServlet extends HttpServlet
     }
 
     /**
-     * Insert new record into the membership table.
+     * Insert new record into the membership table if the record doesn't already exist.
      * @param request servlet request
      * @throws NumberFormatException if number parsing fails
      */
@@ -147,7 +147,10 @@ public class MembershipServlet extends HttpServlet
         membership.setLeagueId(Integer.parseInt(request.getParameter("leagueId")));
         membership.setSeasonId(Integer.parseInt(request.getParameter("seasonId")));
         membership.setTeamId(Integer.parseInt(request.getParameter("teamId")));
-        membershipDao.save(membership);
+        if (!membershipDao.recordExists(membership))
+        {
+            membershipDao.save(membership);
+        }           
     }
 
   

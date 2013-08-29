@@ -15,6 +15,8 @@
     </head>
     <body>
         <h1>All Games</h1>
+        <p><a href="GameServlet?action=menu">Menu</a></p>
+        <p><a href="GameServlet?action=addgame">Add game</a></p>
         <table border=1>
             <thead>
                 <tr>
@@ -45,8 +47,6 @@
                     </tr>
                 </c:forEach>
             </tbody>
-        </table>
-        <p><a href="GameServlet?action=addgame">Add game</a></p>
-        <p><a href="GameServlet?action=menu">Menu</a></p>
+        </table>            
     </body>
 </html>

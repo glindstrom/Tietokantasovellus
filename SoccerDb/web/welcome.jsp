@@ -12,7 +12,9 @@
         <title>Football Database</title>
     </head>
     <body>
-        <h1>MENU</h1>
+        <h1>MENU</h1> 
+        <p><a href="LoginServlet?action=logout">Log Out</a></p>
+        
         <p><a href="LeagueServlet?action=listLeagues">Manage leagues</a></p>
         <p><a href="TeamServlet?action=listTeams">Manage teams</a></p>
         <p><a href="SeasonServlet?action=listSeasons">Manage seasons</a></p>

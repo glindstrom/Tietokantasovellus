@@ -147,4 +147,35 @@ public class SeasonDaoImpl implements SeasonDao
         }
         return season;
     }
+     
+    @Override
+    public boolean recordExists(Season season)
+    {
+        boolean recordExists = true;
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT name FROM season WHERE name = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, season.getName());
+            ResultSet rs = ps.executeQuery();
+            recordExists = rs.next();
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {            
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        return recordExists;
+    }
 }

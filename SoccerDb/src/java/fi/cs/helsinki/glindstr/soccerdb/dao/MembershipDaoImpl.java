@@ -164,5 +164,38 @@ public class MembershipDaoImpl implements MembershipDao
         }
         return teams;
     }
+     
+      @Override
+    public boolean recordExists(Membership membership)
+    {
+        boolean recordExists = true;
+        Connection conn = ConnectionProvider.createConnection();
+        try
+        {
+            String sql = "SELECT id FROM membership WHERE team_id = ? AND season_id = ? AND league_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, membership.getTeamId());
+            ps.setInt(2, membership.getSeasonId());
+            ps.setInt(3, membership.getLeagueId());
+            ResultSet rs = ps.executeQuery();
+            recordExists = rs.next();
+        } catch (SQLException e)
+        {
+            System.out.println(e);
+        } finally
+        {            
+            if (conn != null)
+            {
+                try
+                {
+                    conn.close();
+                } catch (SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        return recordExists;
+    }
     
 }

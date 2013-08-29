@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * This servlet handles the login functionality.
+ * This servlet handles the logging in and out out the system.
  *
  */
 public class LoginServlet extends HttpServlet
@@ -39,6 +39,17 @@ public class LoginServlet extends HttpServlet
         super();
         dao = new UserDaoImpl();
     }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        if (request.getParameter("action").equalsIgnoreCase("logout"))
+        {
+           HttpSession session = request.getSession();
+           session.invalidate();
+           response.sendRedirect("login.jsp"); 
+        }        
+    }        
 
     /**
      * Handles the HTTP
@@ -70,7 +81,7 @@ public class LoginServlet extends HttpServlet
             } 
             else
             {
-                request.setAttribute("message", "Unknown username and/or password, try again");
+                request.setAttribute("message", "Unknown username and/or password, please try again.");
                 redirect = LOGIN;
             }
         }
