@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * This servlet handles the logging in and out out the system.
+ * This servlet handles the logging in and out of the system.
  *
  */
 public class LoginServlet extends HttpServlet

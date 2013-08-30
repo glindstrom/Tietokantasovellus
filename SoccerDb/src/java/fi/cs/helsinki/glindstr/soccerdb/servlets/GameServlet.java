@@ -189,7 +189,7 @@ public class GameServlet extends HttpServlet
     }
 
     /**
-     * Inserts a new record into the game table.
+     * Inserts a new record into the game table if the record doesn't already exist.
      *
      * @param request servlet request
      * @param session the current session
@@ -215,7 +215,14 @@ public class GameServlet extends HttpServlet
         game.setHomeScore(homeScore);
         game.setAwayScore(awayScore);
         game.setEditedBy((Integer) session.getAttribute("userId"));
-        gameDao.save(game);
+        if (gameDao.recordExists(game))
+        {
+            request.setAttribute("message", "The game you tried to add already exists.");
+        }
+        else
+        {
+            gameDao.save(game);
+        }        
     }
 
     /**

@@ -17,7 +17,7 @@ public interface BaseDao<T>
     
     /**
      * Deleted a record from the database.
-     * @param id the record to be deleted
+     * @param id the id of the record to be deleted
      */
     void delete(int id);
     
@@ -27,6 +27,5 @@ public interface BaseDao<T>
      * @return true if the record exists in the database, false otherwise
      */
     boolean recordExists(T type);
-    
-    
+        
 }

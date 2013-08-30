@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +16,7 @@
         <h1>All Games</h1>
         <p><a href="GameServlet?action=menu">Menu</a></p>
         <p><a href="GameServlet?action=addgame">Add game</a></p>
+        <p>${message}</p>
         <table border=1>
             <thead>
                 <tr>

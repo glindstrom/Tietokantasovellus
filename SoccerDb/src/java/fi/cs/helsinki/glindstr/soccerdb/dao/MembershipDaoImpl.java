@@ -30,17 +30,20 @@ public class MembershipDaoImpl implements MembershipDao
             ps.setInt(3, membership.getTeamId());
             ps.executeUpdate();
             conn.close();
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
-        } finally
+        }
+        finally
         {
             if (conn != null)
             {
                 try
                 {
                     conn.close();
-                } catch (SQLException ignore)
+                }
+                catch (SQLException ignore)
                 {
                 }
             }
@@ -76,17 +79,20 @@ public class MembershipDaoImpl implements MembershipDao
                 membership.setTeamName(rs.getString("team_name"));
                 memberships.add(membership);
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
-        } finally
+        }
+        finally
         {
             if (conn != null)
             {
                 try
                 {
                     conn.close();
-                } catch (SQLException e)
+                }
+                catch (SQLException e)
                 {
                     System.out.println(e);
                 }
@@ -105,25 +111,28 @@ public class MembershipDaoImpl implements MembershipDao
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
-        } finally
+        }
+        finally
         {
             if (conn != null)
             {
                 try
                 {
                     conn.close();
-                } catch (SQLException e)
+                }
+                catch (SQLException e)
                 {
                     System.out.println(e);
                 }
             }
         }
     }
-    
-     @Override
+
+    @Override
     public List<Team> getTeamsByLeagueAndSeason(int leagueId, int seasonId)
     {
         Connection conn = ConnectionProvider.createConnection();
@@ -164,8 +173,8 @@ public class MembershipDaoImpl implements MembershipDao
         }
         return teams;
     }
-     
-      @Override
+
+    @Override
     public boolean recordExists(Membership membership)
     {
         boolean recordExists = true;
@@ -179,17 +188,20 @@ public class MembershipDaoImpl implements MembershipDao
             ps.setInt(3, membership.getLeagueId());
             ResultSet rs = ps.executeQuery();
             recordExists = rs.next();
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
-        } finally
-        {            
+        }
+        finally
+        {
             if (conn != null)
             {
                 try
                 {
                     conn.close();
-                } catch (SQLException e)
+                }
+                catch (SQLException e)
                 {
                     System.out.println(e);
                 }
@@ -197,5 +209,4 @@ public class MembershipDaoImpl implements MembershipDao
         }
         return recordExists;
     }
-    
 }
