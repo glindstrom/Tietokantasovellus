@@ -58,6 +58,9 @@ public class GameServlet extends HttpServlet
      * data access object for the season table
      */
     private SeasonDao seasonDao;
+    /**
+     * data access object for the membership table
+     */
     private MembershipDao membershipDao;
     /**
      * the game being created

@@ -64,7 +64,7 @@ public class MembershipDaoImpl implements MembershipDao
                     + " INNER JOIN league l ON"
                     + " membership.league_id = l.id"
                     + " INNER JOIN team t ON"
-                    + " membership.team_id = t.id";
+                    + " membership.team_id = t.id ORDER BY league_name, team_name";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
@@ -140,7 +140,8 @@ public class MembershipDaoImpl implements MembershipDao
         try
         {
             String sql = "SELECT team_id AS id, team.name AS name FROM membership, team "
-                    + "WHERE league_id = ? AND season_id = ? AND membership.team_id = team.id";
+                    + "WHERE league_id = ? AND season_id = ? AND membership.team_id = team.id "
+                    + "ORDER BY name";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, leagueId);
             ps.setInt(2, seasonId);
